@@ -19,7 +19,7 @@ const TEXTALIGN = {
 
 const defaultOptions = {
   title: "",
-  // titleAligan: textAlign,
+  // titleAlign: textAlign,
   // titleColor: color
   // titleBgColor: bgColor
   trim: true,
@@ -38,7 +38,7 @@ const normalizeOptions = (str, options) => {
   let {
     trim,
     title,
-    titleAligan,
+    titleAlign,
     padding,
     xpadding,
     ypadding,
@@ -58,7 +58,7 @@ const normalizeOptions = (str, options) => {
   if (!borderColor) borderColor = color;
   if (!titleColor) titleColor = color;
   if (!titleBgColor) titleBgColor = bgColor;
-  if (!titleAligan) titleAligan = textAlign;
+  if (!titleAlign) titleAlign = textAlign;
   let text = str.split(/\r\n|\r|\n/);
   const { xpadding: nxpadding, ypadding: nypadding } = setPaddings(
     xpadding,
@@ -70,7 +70,7 @@ const normalizeOptions = (str, options) => {
   return {
     text,
     title,
-    titleAligan,
+    titleAlign,
     textAlign,
     charSet,
     maxChars,
@@ -86,11 +86,11 @@ const normalizeOptions = (str, options) => {
   };
 };
 
-const table = (str, options) => {
+const box = (str, options) => {
   const {
     text,
     title,
-    titleAligan,
+    titleAlign,
     textAlign,
     charSet,
     maxChars,
@@ -108,7 +108,7 @@ const table = (str, options) => {
   tableText += boxHead(
     title,
     maxCharsWithPadding,
-    titleAligan,
+    titleAlign,
     charSet,
     borderColor,
     borderBgColor,
@@ -285,7 +285,7 @@ const boxHead = (
       delta = Math.round(delta / 2);
       str +=
         paintText(
-          charSet[TABLESET.horisontal].repeat(delta),
+          charSet[TABLESET.horisontal].repeat(delta % 2 ? delta - 1 : delta),
           borderColor,
           borderBgColor
         ) +
@@ -335,4 +335,5 @@ const getMaxChars = (text, title, padding) => {
   return { maxChars, maxCharsWithPadding: maxChars + padding * 2 };
 };
 
-export default table;
+// export default table;
+export { box };
