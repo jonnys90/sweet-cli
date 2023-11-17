@@ -1,3 +1,4 @@
-import { box } from "./table.js";
+import { box } from "./box.js";
 
-box("test", { title: "5555", titleAlign: "center" });
+// box("test", { title: "55", titleAlign: "center" });
+box("text");

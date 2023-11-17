@@ -285,7 +285,11 @@ const boxHead = (
       delta = Math.round(delta / 2);
       str +=
         paintText(
-          charSet[TABLESET.horisontal].repeat(delta % 2 ? delta - 1 : delta),
+          charSet[TABLESET.horisontal].repeat(
+            delta % 2 && delta * 2 + title.length != maxChars
+              ? delta - 1
+              : delta
+          ),
           borderColor,
           borderBgColor
         ) +
