@@ -339,5 +339,5 @@ const getMaxChars = (text, title, padding) => {
   return { maxChars, maxCharsWithPadding: maxChars + padding * 2 };
 };
 
-// export default table;
-export { box };
+export default box;
+// export { box };
