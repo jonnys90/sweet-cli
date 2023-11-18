@@ -9,7 +9,15 @@ const { defaultCharSet } = tableCharSets;
 
 const table = (d2arr, options) => {
   let charSet = defaultCharSet;
-  let { xpadding, ypadding, textAlign } = initOptions(options);
+  let {
+    xpadding,
+    ypadding,
+    textAlign,
+    color,
+    bgColor,
+    borderBgColor,
+    borderColor,
+  } = initOptions(options);
   let { maxLenArr, maxLenPaddArr } = initMaxLen(d2arr, xpadding);
   let allstr = "";
   let i,
@@ -33,7 +41,9 @@ const table = (d2arr, options) => {
       charSet[TABLESET.vertical],
       " ",
       charSet[TABLESET.vertical],
-      ypadding
+      ypadding,
+      color,
+      bgColor
     );
     for (let cell of row) {
       i++;
@@ -44,7 +54,9 @@ const table = (d2arr, options) => {
         " ",
         i < l ? undefined : charSet[TABLESET.vertical],
         xpadding,
-        textAlign
+        textAlign,
+        color,
+        bgColor
       );
     }
     allstr += EOL;
@@ -53,7 +65,9 @@ const table = (d2arr, options) => {
       charSet[TABLESET.vertical],
       " ",
       charSet[TABLESET.vertical],
-      ypadding
+      ypadding,
+      color,
+      bgColor
     );
     if (r++ < d2arrLen) {
       allstr += drawDividerLine(
@@ -77,10 +91,26 @@ const table = (d2arr, options) => {
 
 const setDefaultString = (str, def = "") => (str ? str : def);
 
-const yPaddingLine = (maxLen, leftChar, fillerChar, rightChar, ypadding) => {
+const yPaddingLine = (
+  maxLen,
+  leftChar,
+  fillerChar,
+  rightChar,
+  ypadding,
+  color,
+  bgColor
+) => {
   let text = "";
   for (let i = 0; i < ypadding; i++) {
-    text += drawDividerLine(maxLen, leftChar, fillerChar, rightChar, rightChar);
+    text += drawDividerLine(
+      maxLen,
+      leftChar,
+      fillerChar,
+      rightChar,
+      rightChar,
+      color,
+      bgColor
+    );
   }
   return text;
 };
@@ -92,31 +122,34 @@ const drawLine = (
   fillerChar,
   rightChar,
   padding = 0,
-  textAlign
+  textAlign,
+  color,
+  bgColor
 ) => {
   text = setDefaultString(text);
   let str = setDefaultString(leftChar);
   let delta = maxLen - text.length;
-  str += fillerChar.repeat(padding);
+  let line = fillerChar.repeat(padding);
+  // str += fillerChar.repeat(padding);
   switch (textAlign) {
     case TEXTALIGN.LEFT:
-      str += text;
-      str += fillerChar.repeat(delta);
+      line += text;
+      line += fillerChar.repeat(delta);
       break;
     case TEXTALIGN.RIGHT:
-      str += fillerChar.repeat(delta);
-      str += text;
+      line += fillerChar.repeat(delta);
+      line += text;
       break;
     default:
       let ndelta = parseInt(delta / 2);
-      str += fillerChar.repeat(ndelta);
-      str += text;
+      line += fillerChar.repeat(ndelta);
+      line += text;
       if (delta && text.length % 2) ndelta++;
-      str += fillerChar.repeat(ndelta);
+      line += fillerChar.repeat(ndelta);
       break;
   }
-  str += fillerChar.repeat(padding);
-  str += setDefaultString(rightChar);
+  line += fillerChar.repeat(padding);
+  str += paintText(line, color, bgColor) + setDefaultString(rightChar);
   return str;
 };
 
@@ -125,7 +158,9 @@ const drawDividerLine = (
   leftChar,
   fillerChar,
   centerChar,
-  rightChar
+  rightChar,
+  color,
+  bgColor
 ) => {
   let str = "";
   let i = 0,
@@ -139,18 +174,20 @@ const drawDividerLine = (
       n,
       tleft,
       fillerChar,
-      i < l ? centerChar : rightChar
+      i < l ? centerChar : rightChar,
+      undefined,
+      color,
+      bgColor
     );
-    // str += drawLine(
-    //   undefined,
-    //   n,
-    //   i === 0 ? leftChar : "@",
-    //   fillerChar,
-    //   i < l ? centerChar : rightChar
-    // );
     i++;
   }
   return str + EOL;
+};
+
+const paintText = (str, color, bgColor) => {
+  if (color) str = color(str);
+  if (bgColor) str = bgColor(str);
+  return str;
 };
 
 export default table;

@@ -1,5 +1,5 @@
+import chalk from "chalk";
 import TEXTALIGN from "../enums/textAlign.js";
-
 import tableCharSets from "../tableCharSets.js";
 
 const defaultOptions = {
@@ -12,9 +12,9 @@ const defaultOptions = {
   // xpadding: padding,
   // ypadding: round(padding / 3),
   // margin: 0,
-  // textAlign: TEXTALIGN.RIGHT,
-  // color: chalk.greenBright,
-  // bgColor: chalk.bgBlack,
+  // textAlign: TEXTALIGN.CNTER,
+  color: chalk.greenBright,
+  bgColor: chalk.bgBlack,
   // borderColor: color,
   // borderBgColor: bgColor,
 };
