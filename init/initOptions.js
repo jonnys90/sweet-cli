@@ -15,8 +15,8 @@ const defaultOptions = {
   // textAlign: TEXTALIGN.CNTER,
   color: chalk.greenBright,
   bgColor: chalk.bgBlack,
-  // borderColor: color,
-  // borderBgColor: bgColor,
+  // borderColor: chalk.redBright,
+  // borderBgColor: chalk.bgGray,
 };
 
 const initOptions = (options = {}) => {
@@ -30,8 +30,8 @@ const initOptions = (options = {}) => {
     textAlign,
     color,
     bgColor,
-    borderBgColor,
     borderColor,
+    borderBgColor,
     // titleColor,
     // titleBgColor,
   } = {
@@ -39,8 +39,8 @@ const initOptions = (options = {}) => {
     ...options,
   };
   let charSet = tableCharSets.defaultCharSet;
-  if (!borderBgColor) borderBgColor = bgColor;
   if (!borderColor) borderColor = color;
+  if (!borderBgColor) borderBgColor = bgColor;
   //   if (!titleColor) titleColor = color;
   //   if (!titleBgColor) titleBgColor = bgColor;
   //   if (!titleAlign) titleAlign = textAlign;
