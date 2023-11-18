@@ -3,12 +3,13 @@ import initMaxLen from "./init/initMaxLen.js";
 import TABLESET from "./enums/tableSet.js";
 import initOptions from "./init/initOptions.js";
 import tableCharSets from "./tableCharSets.js";
+import TEXTALIGN from "./enums/textAlign.js";
 
 const { defaultCharSet } = tableCharSets;
 
 const table = (d2arr, options) => {
   let charSet = defaultCharSet;
-  let { xpadding, ypadding } = initOptions(options);
+  let { xpadding, ypadding, textAlign } = initOptions(options);
   let { maxLenArr, maxLenPaddArr } = initMaxLen(d2arr, xpadding);
   let allstr = "";
   let i,
@@ -16,7 +17,7 @@ const table = (d2arr, options) => {
     r = 0,
     d2arrLen = d2arr.length - 1;
 
-  console.log({ maxLenArr, maxLenPaddArr, xpadding, ypadding });
+  // console.log({ maxLenArr, maxLenPaddArr, xpadding, ypadding });
   allstr += drawDividerLine(
     maxLenPaddArr,
     charSet[TABLESET.topLeft],
@@ -35,7 +36,8 @@ const table = (d2arr, options) => {
         charSet[TABLESET.vertical],
         " ",
         i < l ? undefined : charSet[TABLESET.vertical],
-        xpadding
+        xpadding,
+        textAlign
       );
     }
     allstr += EOL;
@@ -67,14 +69,30 @@ const drawLine = (
   leftChar,
   fillerChar,
   rightChar,
-  padding = 0
+  padding = 0,
+  textAlign
 ) => {
   text = setDefaultString(text);
   let str = setDefaultString(leftChar);
   let delta = maxLen - text.length;
   str += fillerChar.repeat(padding);
-  str += text;
-  str += fillerChar.repeat(delta);
+  switch (textAlign) {
+    case TEXTALIGN.LEFT:
+      str += text;
+      str += fillerChar.repeat(delta);
+      break;
+    case TEXTALIGN.RIGHT:
+      str += fillerChar.repeat(delta);
+      str += text;
+      break;
+    default:
+      let ndelta = parseInt(delta / 2);
+      str += fillerChar.repeat(ndelta);
+      str += text;
+      if (delta && text.length % 2) ndelta++;
+      str += fillerChar.repeat(ndelta);
+      break;
+  }
   str += fillerChar.repeat(padding);
   str += setDefaultString(rightChar);
   return str;
@@ -89,15 +107,25 @@ const drawDividerLine = (
 ) => {
   let str = "";
   let i = 0,
-    l = maxLen.length;
+    l = maxLen.length - 1;
   for (let n of maxLen) {
+    let tleft = "";
+    if (!i) tleft = leftChar;
+    if (n % 2) tleft += fillerChar;
     str += drawLine(
       undefined,
       n,
-      i === 0 ? leftChar : "",
+      tleft,
       fillerChar,
-      i + 1 < l ? centerChar : rightChar
+      i < l ? centerChar : rightChar
     );
+    // str += drawLine(
+    //   undefined,
+    //   n,
+    //   i === 0 ? leftChar : "@",
+    //   fillerChar,
+    //   i < l ? centerChar : rightChar
+    // );
     i++;
   }
   return str + EOL;

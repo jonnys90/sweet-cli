@@ -12,7 +12,7 @@ const defaultOptions = {
   // xpadding: padding,
   // ypadding: round(padding / 2),
   // margin: 0,
-  textAlign: TEXTALIGN.CENTER,
+  // textAlign: TEXTALIGN.CENTER,
   // color: chalk.greenBright,
   // bgColor: chalk.bgBlack,
   // borderColor: color,
