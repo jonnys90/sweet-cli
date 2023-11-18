@@ -5,19 +5,6 @@ import initOptions from "./init/initOptions.js";
 import tableCharSets from "./tableCharSets.js";
 
 const { defaultCharSet } = tableCharSets;
-/*
-  │ 0   vertical
-  ─ 1   horisontal
-  ┌ 2   topLeft
-  ┐ 3   topRight
-  └ 4   bottomLeft
-  ┘ 5   bottomRight
-  ├ 6   topLeftBottom
-  ┤ 7   topRightBottom
-  ┬ 8   leftTopRight
-  ┴ 9   leftBottomRight
-  ┼ 10  center
-*/
 
 const table = (d2arr, options) => {
   let charSet = defaultCharSet;
@@ -30,7 +17,6 @@ const table = (d2arr, options) => {
     d2arrLen = d2arr.length - 1;
 
   console.log({ maxLenArr, maxLenPaddArr, xpadding, ypadding });
-  // console.log({ maxLenArr, totalLen, xpadding, ypadding });
   allstr += drawDividerLine(
     maxLenPaddArr,
     charSet[TABLESET.topLeft],
