@@ -10,9 +10,9 @@ const defaultOptions = {
   trim: true,
   padding: 2,
   // xpadding: padding,
-  // ypadding: round(padding / 2),
+  // ypadding: round(padding / 3),
   // margin: 0,
-  // textAlign: TEXTALIGN.CENTER,
+  // textAlign: TEXTALIGN.RIGHT,
   // color: chalk.greenBright,
   // bgColor: chalk.bgBlack,
   // borderColor: color,
@@ -76,7 +76,7 @@ const setPaddings = (xpadding, ypadding, padding = 2) => {
     xpadding = padding;
   }
   if (!ypadding) {
-    ypadding = Math.round(padding / 2);
+    ypadding = parseInt(padding / 3);
   }
   return { xpadding, ypadding };
 };

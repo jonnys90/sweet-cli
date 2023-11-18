@@ -28,6 +28,13 @@ const table = (d2arr, options) => {
   for (let row of d2arr) {
     i = -1;
     l = row.length - 1;
+    allstr += yPaddingLine(
+      maxLenPaddArr,
+      charSet[TABLESET.vertical],
+      " ",
+      charSet[TABLESET.vertical],
+      ypadding
+    );
     for (let cell of row) {
       i++;
       allstr += drawLine(
@@ -41,6 +48,13 @@ const table = (d2arr, options) => {
       );
     }
     allstr += EOL;
+    allstr += yPaddingLine(
+      maxLenPaddArr,
+      charSet[TABLESET.vertical],
+      " ",
+      charSet[TABLESET.vertical],
+      ypadding
+    );
     if (r++ < d2arrLen) {
       allstr += drawDividerLine(
         maxLenPaddArr,
@@ -62,6 +76,14 @@ const table = (d2arr, options) => {
 };
 
 const setDefaultString = (str, def = "") => (str ? str : def);
+
+const yPaddingLine = (maxLen, leftChar, fillerChar, rightChar, ypadding) => {
+  let text = "";
+  for (let i = 0; i < ypadding; i++) {
+    text += drawDividerLine(maxLen, leftChar, fillerChar, rightChar, rightChar);
+  }
+  return text;
+};
 
 const drawLine = (
   text,
