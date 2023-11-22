@@ -8,8 +8,8 @@ const initMaxLen = (d2arr, xpadding) => {
     r = -1;
   xpadding *= 2;
   for (i = 0; i < d2arr0Len; i++) {
-    maxLenArr[i] = d2arr[0].length;
-    maxLenPaddArr[i] = d2arr[0].length;
+    maxLenArr[i] = d2arr[0][0].length;
+    maxLenPaddArr[i] = d2arr[0][0].length;
   }
   for (i = 0; i < maxLenVerArr.length; i++) {
     maxLenVerArr[i] = 0;
@@ -26,7 +26,6 @@ const initMaxLen = (d2arr, xpadding) => {
   for (i = 0; i < l; i++) {
     maxLenPaddArr[i] = maxLenArr[i] + xpadding;
   }
-  console.log({ maxLenArr, maxLenPaddArr, maxLenVerArr });
   return { maxLenArr, maxLenPaddArr, maxLenVerArr };
 };
 

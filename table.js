@@ -4,7 +4,7 @@ import TABLESET from "./enums/tableSet.js";
 import initOptions from "./init/initOptions.js";
 import tableCharSets from "./tableCharSets.js";
 import TEXTALIGN from "./enums/textAlign.js";
-
+import normalizeTableArr from "./init/normalizeTableArr.js";
 const { defaultCharSet } = tableCharSets;
 
 const table = (d2arr, options) => {
@@ -18,16 +18,16 @@ const table = (d2arr, options) => {
     borderColor,
     borderBgColor,
   } = initOptions(options);
-
+  d2arr = normalizeTableArr(d2arr);
   let { maxLenArr, maxLenPaddArr, maxLenVerArr } = initMaxLen(d2arr, xpadding);
-  return;
+  // console.log({ maxLenArr, maxLenPaddArr, maxLenVerArr, xpadding, ypadding });
   let allstr = "";
   let i,
     l,
     r = 0,
+    subR = 0,
+    nowR = -1,
     d2arrLen = d2arr.length - 1;
-
-  // console.log({ maxLenArr, maxLenPaddArr, xpadding, ypadding });
   allstr += drawDividerLine(
     maxLenPaddArr,
     charSet[TABLESET.topLeft],
@@ -38,7 +38,7 @@ const table = (d2arr, options) => {
     borderBgColor
   );
   for (let row of d2arr) {
-    i = -1;
+    // i = -1;
     l = row.length - 1;
     allstr += yPaddingLine(
       maxLenPaddArr,
@@ -51,23 +51,27 @@ const table = (d2arr, options) => {
       borderColor,
       borderBgColor
     );
-    for (let cell of row) {
-      i++;
-      allstr += drawLine(
-        cell,
-        maxLenArr[i],
-        charSet[TABLESET.vertical],
-        " ",
-        i < l ? undefined : charSet[TABLESET.vertical],
-        xpadding,
-        textAlign,
-        color,
-        bgColor,
-        borderColor,
-        borderBgColor
-      );
+    nowR++;
+    for (subR = 0; subR < maxLenVerArr[nowR]; subR++) {
+      i = -1;
+      for (let cell of row) {
+        i++;
+        allstr += drawLine(
+          cell[subR] ? cell[subR] : " ",
+          maxLenArr[i],
+          charSet[TABLESET.vertical],
+          " ",
+          i < l ? undefined : charSet[TABLESET.vertical],
+          xpadding,
+          textAlign,
+          color,
+          bgColor,
+          borderColor,
+          borderBgColor
+        );
+      }
+      allstr += EOL;
     }
-    allstr += EOL;
     allstr += yPaddingLine(
       maxLenPaddArr,
       charSet[TABLESET.vertical],
@@ -170,7 +174,7 @@ const drawLine = (
       let ndelta = parseInt(delta / 2);
       line += fillerChar.repeat(ndelta);
       line += text;
-      if (delta && text.length % 2) ndelta++;
+      if (delta && text.length % 2 != maxLen % 2) ndelta++;
       line += fillerChar.repeat(ndelta);
       break;
   }
@@ -200,7 +204,6 @@ const drawDividerLine = (
   for (let n of maxLen) {
     let tleft = "";
     if (!i) tleft = leftChar;
-    if (n % 2) tleft += fillerChar;
     str += drawLine(
       undefined,
       n,
