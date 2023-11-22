@@ -16,9 +16,11 @@ import table from "./table.js";
 // table([["test"]]);
 // table([["test"]], { padding: 3 });
 // table([["test1\ntest11"], ["test1\ntest"]]);
+// table([["test1\ntest11"], ["test1\ntest"]], { padding: 3 });
 // table([["test1\ntest11", "hi"], ["test1\ntest\ntt"]]);
-table([["test1\ntest11", "hi"], ["test1\ntest\ntt"]], { padding: 3 });
-// table([["test1\ntest\ntt"]]);
+// table([["test1\ntest11", "hi"], ["test1\ntest\ntt"]], { padding: 3 });
+table([["test1\ntest\ntt"]]);
+table([["test1\ntest\ntt"]], { padding: 3 });
 /*
   [
     [["test", "test"], ["test", "test"]],

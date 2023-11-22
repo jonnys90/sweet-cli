@@ -20,7 +20,7 @@ const table = (d2arr, options) => {
   } = initOptions(options);
   d2arr = normalizeTableArr(d2arr);
   let { maxLenArr, maxLenPaddArr, maxLenVerArr } = initMaxLen(d2arr, xpadding);
-  // console.log({ maxLenArr, maxLenPaddArr, maxLenVerArr, xpadding, ypadding });
+  console.log({ maxLenArr, maxLenPaddArr, maxLenVerArr, xpadding, ypadding });
   let allstr = "";
   let i,
     l,
@@ -121,24 +121,42 @@ const yPaddingLine = (
   borderBgColor
 ) => {
   let text = "";
+  let r = -1;
+  // console.log({ ypadding, maxLen, leftChar, fillerChar, rightChar });
   for (let i = 0; i < ypadding; i++) {
     for (let n of maxLen) {
-      text +=
-        drawLine(
-          undefined,
-          n,
-          leftChar,
-          fillerChar,
-          rightChar,
-          undefined,
-          undefined,
-          color,
-          bgColor,
-          borderColor,
-          borderBgColor,
-          false
-        ) + EOL;
+      // console.log({ n });
+      text += drawLine(
+        undefined,
+        n,
+        ++r ? "" : leftChar,
+        fillerChar,
+        rightChar,
+        undefined,
+        undefined,
+        color,
+        bgColor,
+        borderColor,
+        borderBgColor,
+        false
+      );
+      // text +=
+      //   drawLine(
+      //     undefined,
+      //     n,
+      //     leftChar,
+      //     fillerChar,
+      //     rightChar,
+      //     undefined,
+      //     undefined,
+      //     color,
+      //     bgColor,
+      //     borderColor,
+      //     borderBgColor,
+      //     false
+      //   ) + EOL;
     }
+    text += EOL;
   }
   return text;
 };
