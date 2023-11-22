@@ -15,12 +15,12 @@ import table from "./table.js";
 // table([["12", "12", "12"]]);
 // table([["test"]]);
 // table([["test"]], { padding: 3 });
-table([
+table([["test1\ntest11", "hi"], ["test1\ntest\ntt"]]);
+// table([["test1\ntest\ntt"]]);
+/*
   [
-    `
-test
-test
-test
-`,
-  ],
-]);
+    [["test", "test"], ["test", "test"]],
+    [["test", "test"], ["test", "test"]],
+    [["test", "test"], ["test", "test"]],
+  ]
+*/

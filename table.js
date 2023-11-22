@@ -18,7 +18,9 @@ const table = (d2arr, options) => {
     borderColor,
     borderBgColor,
   } = initOptions(options);
-  let { maxLenArr, maxLenPaddArr } = initMaxLen(d2arr, xpadding);
+
+  let { maxLenArr, maxLenPaddArr, maxLenVerArr } = initMaxLen(d2arr, xpadding);
+  return;
   let allstr = "";
   let i,
     l,
