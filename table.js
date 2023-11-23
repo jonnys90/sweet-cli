@@ -20,7 +20,6 @@ const table = (d2arr, options) => {
   } = initOptions(options);
   d2arr = normalizeTableArr(d2arr);
   let { maxLenArr, maxLenPaddArr, maxLenVerArr } = initMaxLen(d2arr, xpadding);
-  console.log({ maxLenArr, maxLenPaddArr, maxLenVerArr, xpadding, ypadding });
   let allstr = "";
   let i,
     l,
@@ -38,7 +37,6 @@ const table = (d2arr, options) => {
     borderBgColor
   );
   for (let row of d2arr) {
-    // i = -1;
     l = row.length - 1;
     allstr += yPaddingLine(
       maxLenPaddArr,
@@ -122,7 +120,6 @@ const yPaddingLine = (
 ) => {
   let text = "";
   let r = -1;
-  // console.log({ ypadding, maxLen, leftChar, fillerChar, rightChar });
   for (let i = 0; i < ypadding; i++) {
     for (let n of maxLen) {
       // console.log({ n });
@@ -140,21 +137,6 @@ const yPaddingLine = (
         borderBgColor,
         false
       );
-      // text +=
-      //   drawLine(
-      //     undefined,
-      //     n,
-      //     leftChar,
-      //     fillerChar,
-      //     rightChar,
-      //     undefined,
-      //     undefined,
-      //     color,
-      //     bgColor,
-      //     borderColor,
-      //     borderBgColor,
-      //     false
-      //   ) + EOL;
     }
     text += EOL;
   }
