@@ -1,6 +1,6 @@
 // import  box  from "./box.js";
 import chalk from "chalk";
-import table from "./table/table.js";
+import table, { customCharSet } from "./table/table.js";
 // import argsParser from "./argsParser.js";
 // import argsOptions from "./enums/argsOptions.js";
 // import ArgObj from "./models/ArgObj.js";
@@ -32,6 +32,23 @@ import table from "./table/table.js";
     [["test", "test"], ["test", "test"]],
   ]
 */
+table(
+  [
+    ["test", "test2", "tt"],
+    ["11", "22", "1"],
+  ],
+  {
+    charSet: customCharSet(
+      "║",
+      "═",
+      "╔",
+      "╗",
+      "╚",
+      "╝",
+      "╠" + "╣" + "╦" + "╩" + "╬"
+    ),
+  }
+);
 
 //node test.js i nodemon chalk
 // let args = argsParser([

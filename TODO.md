@@ -11,7 +11,7 @@ add nomeric col
 add char col
 add title
 ?) add footer row
-custom charset
+v) custom charset
 =====================
 ========args=========
 =====================
@@ -28,3 +28,9 @@ v) cmd args+args+args cmd or eof
 =====================
 =====question cli====
 =====================
+
+=====================
+=======general=======
+=====================
+docs
+readme

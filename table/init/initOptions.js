@@ -1,6 +1,7 @@
 import chalk from "chalk";
 import TEXTALIGN from "../enums/textAlign.js";
 import tableCharSets from "../tableCharSets.js";
+import defaultCharSet from "../tableCharSets.js";
 
 const defaultOptions = {
   // title: "",
@@ -19,6 +20,7 @@ const defaultOptions = {
   // borderBgColor: chalk.bgGray,
   headerColor: chalk.blueBright,
   // headerBgColor:bgColor
+  charSet: defaultCharSet,
 };
 
 const initOptions = (options = {}) => {
@@ -38,11 +40,12 @@ const initOptions = (options = {}) => {
     // titleBgColor,
     headerColor,
     headerBgColor,
+    charSet,
   } = {
     ...defaultOptions,
     ...options,
   };
-  let charSet = tableCharSets.defaultCharSet;
+  // let charSet = tableCharSets.defaultCharSet;
   if (!borderColor) borderColor = color;
   if (!borderBgColor) borderBgColor = bgColor;
   if (!headerColor) headerColor = color;

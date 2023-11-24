@@ -2,13 +2,14 @@ import { EOL } from "node:os";
 import initMaxLen from "./init/initMaxLen.js";
 import TABLESET from "./enums/tableSet.js";
 import initOptions from "./init/initOptions.js";
-import tableCharSets from "./tableCharSets.js";
+// import tableCharSets from "./tableCharSets.js";
 import TEXTALIGN from "./enums/textAlign.js";
 import normalizeTableArr from "./init/normalizeTableArr.js";
-const { defaultCharSet } = tableCharSets;
+// const { defaultCharSet } = tableCharSets;
+import customCharSet from "./customCharSet.js";
 
 const table = (d2arr, options) => {
-  let charSet = defaultCharSet;
+  // let charSet = defaultCharSet;
   let {
     xpadding,
     ypadding,
@@ -19,6 +20,7 @@ const table = (d2arr, options) => {
     borderBgColor,
     headerColor,
     headerBgColor,
+    charSet,
   } = initOptions(options);
   d2arr = normalizeTableArr(d2arr);
   let { maxLenArr, maxLenPaddArr, maxLenVerArr } = initMaxLen(d2arr, xpadding);
@@ -232,4 +234,4 @@ const paintText = (str, color, bgColor) => {
 };
 
 export default table;
-export { TEXTALIGN };
+export { TEXTALIGN, customCharSet };
