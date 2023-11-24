@@ -17,6 +17,8 @@ const table = (d2arr, options) => {
     bgColor,
     borderColor,
     borderBgColor,
+    headerColor,
+    headerBgColor,
   } = initOptions(options);
   d2arr = normalizeTableArr(d2arr);
   let { maxLenArr, maxLenPaddArr, maxLenVerArr } = initMaxLen(d2arr, xpadding);
@@ -62,8 +64,8 @@ const table = (d2arr, options) => {
           i < l ? undefined : charSet[TABLESET.vertical],
           xpadding,
           textAlign,
-          color,
-          bgColor,
+          nowR ? color : headerColor,
+          nowR ? bgColor : headerBgColor,
           borderColor,
           borderBgColor
         );

@@ -6,7 +6,7 @@ v) multi line
 v) xpadding, ypadding, padding
 v) colors
 v) text align
-add header row
+v) add header row
 add nomeric col
 add char col
 add title

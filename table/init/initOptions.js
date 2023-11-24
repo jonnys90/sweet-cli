@@ -17,6 +17,8 @@ const defaultOptions = {
   bgColor: chalk.bgBlack,
   // borderColor: chalk.redBright,
   // borderBgColor: chalk.bgGray,
+  headerColor: chalk.blueBright,
+  // headerBgColor:bgColor
 };
 
 const initOptions = (options = {}) => {
@@ -34,6 +36,8 @@ const initOptions = (options = {}) => {
     borderBgColor,
     // titleColor,
     // titleBgColor,
+    headerColor,
+    headerBgColor,
   } = {
     ...defaultOptions,
     ...options,
@@ -41,6 +45,8 @@ const initOptions = (options = {}) => {
   let charSet = tableCharSets.defaultCharSet;
   if (!borderColor) borderColor = color;
   if (!borderBgColor) borderBgColor = bgColor;
+  if (!headerColor) headerColor = color;
+  if (!headerBgColor) headerBgColor = bgColor;
   //   if (!titleColor) titleColor = color;
   //   if (!titleBgColor) titleBgColor = bgColor;
   //   if (!titleAlign) titleAlign = textAlign;
@@ -69,6 +75,8 @@ const initOptions = (options = {}) => {
     borderColor,
     // titleColor,
     // titleBgColor,
+    headerColor,
+    headerBgColor,
   };
 };
 const setPaddings = (xpadding, ypadding, padding = 2) => {
