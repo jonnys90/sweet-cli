@@ -3,16 +3,16 @@ import TEXTALIGN from "../enums/textAlign.js";
 import tableCharSets from "../tableCharSets.js";
 
 const defaultOptions = {
-  //   title: "",
+  // title: "",
   // titleAlign: textAlign,
   // titleColor: color
   // titleBgColor: bgColor
-  trim: true,
+  // trim: true,//?
   padding: 2,
   // xpadding: padding,
   // ypadding: round(padding / 3),
-  // margin: 0,
-  // textAlign: TEXTALIGN.CNTER,
+  // margin: 0,//?
+  textAlign: TEXTALIGN.CNTER,
   color: chalk.greenBright,
   bgColor: chalk.bgBlack,
   // borderColor: chalk.redBright,

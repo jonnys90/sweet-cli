@@ -1,4 +1,5 @@
 import argsOptions from "./enums/argsOptions.js";
+import ArgObj from "./models/ArgObj.js";
 /*
     npm i packages -D -g
     cmd arg
@@ -51,3 +52,4 @@ const convertCmds = (cmds) => {
   return cmds;
 };
 export default argsParser;
+export { argsOptions, ArgObj };

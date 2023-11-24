@@ -230,3 +230,4 @@ const paintText = (str, color, bgColor) => {
 };
 
 export default table;
+export { TEXTALIGN };
