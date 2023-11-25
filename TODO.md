@@ -7,9 +7,8 @@ v) xpadding, ypadding, padding
 v) colors
 v) text align
 v) add header row
-add nomeric col
-add char col
-add title
+?) add nomeric col
+x) add title
 ?) add footer row
 v) custom charset
 =====================
